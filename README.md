@@ -1,0 +1,4 @@
+sicp
+====
+
+Going through SICP!

@@ -11,3 +11,10 @@
         (else (+ (square b) (square c)))
         )
   )
+
+;; Cleaner solution:
+
+(define (sum-of-larger-squares2 a b c)
+  (- (+ (square a) (square b) (square c))
+     (square (min a b c)))
+  )

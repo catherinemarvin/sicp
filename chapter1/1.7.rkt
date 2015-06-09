@@ -37,7 +37,34 @@
 ;;; Ex: 
 ;"1.7.rkt"> (my-sqrt 1000000000000)
 ;1000000.0
-;"1.7.rkt"> (my-sqrt 10000000000000)
+;"1.7.r)t"> (my-sqrt 10000000000000)
 ; Takes a very long time to return.
 
 ;;; Alternative sqrt implementation
+
+(define (sqrt-iter2 prev-guess guess x)
+  (if (close-enough? prev-guess guess)
+    guess
+    (sqrt-iter2 guess (improve guess x) x)
+    )
+  )
+
+(define (close-enough? prev-guess guess)
+  (< (abs (- prev-guess guess)) 0.001)
+  )
+
+(define (my-sqrt2 x)
+  (sqrt-iter2 0.0 1.0 x))
+
+;"1.7.rkt"> (sqrt .0001)
+;0.01
+;"1.7.rkt"> (my-sqrt .0001)
+;0.03230844833048122
+;"1.7.rkt"> (my-sqrt2 .0001)
+;0.010000714038711746
+;"1.7.rkt"> (sqrt 10000000000000)
+;3162277.6601683795
+;"1.7.rkt"> (my-sqrt2 10000000000000)
+;3162277.6601683795
+
+;; It performs much better

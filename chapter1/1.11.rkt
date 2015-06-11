@@ -12,3 +12,13 @@
        (* 2 (recursive-f (- n 2)))
        (* 3 (recursive-f (- n 3)))))
   )
+
+(define (iterative-f n)
+  (define (helper a b c i)
+    (if (= i n)
+      (+ a (* 2 b) (* 3 c))
+      (helper b c (+ a (* 2 b) (* 3 c)) (+ n 1))
+      )
+    )
+  (if (< n 3) n (helper 2 2 0 3))
+  )

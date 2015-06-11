@@ -14,12 +14,13 @@
   )
 
 (define (iterative-f n)
-  (define (helper a b c current count)
-    (cond 
-      ((< n 3) n)
-      ((= count n) current)
-      (else (helper current a b (+ a (* 2 b) (* 3 c)) (+ count 1)))
+  (define (helper a b c count)
+    (let ((current (+ a (* 2 b) (* 3 c))))
+      (if (= count n) 
+        current
+        (helper current a b (+ count 1))
+        )
       )
     )
-  (helper 2 2 0 4 n)
+  (helper 2 1 0 3)
   )
